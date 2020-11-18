@@ -32,7 +32,10 @@ public class SignUp extends JFrame{
 	JButton input;
 	JPanel panel = new JPanel();
 	JPanel panel1 = new JPanel();
+	
 	public SignUp() {
+		User user = new User();
+		setTitle("회원가입");
 		panel.setLayout(new GridLayout(0, 2));
 		panel.add(new JLabel("이름", JLabel.CENTER));
 		panel.add(name = new JTextField());
@@ -40,8 +43,8 @@ public class SignUp extends JFrame{
 		panel.add(id = new JTextField());
 		panel.add(new JLabel("비밀번호", JLabel.CENTER));
 		panel.add(password = new JTextField());
-		panel.add(new JLabel("비밀번호 확인", JLabel.CENTER));
-		panel.add(password1 = new JTextField());
+		//panel.add(new JLabel("비밀번호 확인", JLabel.CENTER));
+		//panel.add(password1 = new JTextField());
 		panel.add(new JLabel("나이", JLabel.CENTER));
 		panel.add(age = new JTextField());
 		panel.add(new JLabel("성별", JLabel.CENTER));
@@ -54,36 +57,16 @@ public class SignUp extends JFrame{
 		
 		input = new JButton("입력");
 		input.addActionListener(e -> {
-			/*try {
-				user.setid(id.getText());
-				user.setpassword(password.getText());
-				//new DatabaseUser(user,0);
-				idstring = user.getid();
-				if(!user.getid().equals("")){
-					if(password.getText().equals(password1.getText())) {
-						try {
-							user.setid(id.getText());
-							user.setpassword(password.getText());
-							user.setname(name.getText());
-							user.setgender(gender.getSelectedItem());
-							user.setphone(Integer.parseInt(phone.getText()));
-							user.setpoint(0);
-							//new DatabaseUser(user,1);
-							dispose();
-						} catch (SQLException e1) {
-							e1.printStackTrace();
-						}
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "비밀번호가 서로 일치하지 않습니다.");
-					}
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "이미 존재하는 아이디입니다.");
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}*/
+			user.setid(id.getText());
+			user.setpassword(password.getText());
+			user.setname(name.getText());
+			user.setage(Integer.parseInt(age.getText()));
+			user.setgender(gender.getSelectedItem());
+			
+			UserDAO userdao = new UserDAO();
+			userdao.join(user);
+			dispose();
+			new Menu1();
 		});
 		
 		panel1.add(input);
@@ -91,7 +74,7 @@ public class SignUp extends JFrame{
 		add(panel1,BorderLayout.SOUTH);
 		
 		setSize(350, 200);
-		setLocationRelativeTo(null);//창가운데 띄우기
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 }

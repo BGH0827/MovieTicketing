@@ -18,6 +18,7 @@ public class Login extends JFrame{
 	String idstring = "";
 	User user = new User();
 	public Login() {
+		setTitle("로그인");
 		User user = new User();
 		setLayout(new GridLayout(0, 2));
 		add(new JLabel("아이디", JLabel.CENTER));
@@ -49,7 +50,7 @@ public class Login extends JFrame{
 		add(sign);
 		add(login);
 		setSize(350, 200);
-		setLocationRelativeTo(null);//창가운데 띄우기
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 }

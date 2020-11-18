@@ -18,7 +18,7 @@ public class Menu2 extends JFrame{
 	  setTitle("영화관 선택");
       setSize(1000, 1000);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      
+      setLocationRelativeTo(null);
 
       b[0] = new JButton("CGV");
       b[1] = new JButton("메가박스");
@@ -28,6 +28,75 @@ public class Menu2 extends JFrame{
       b[5] = new JButton("예약 취소");
       
       b[0].addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			public void mousePressed(MouseEvent e) {
+				//new BoxOffice();
+				new Login();
+				dispose();
+			}
+		});
+      b[1].addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			public void mousePressed(MouseEvent e) {
+				//new BoxOffice();
+				new Login();
+				dispose();
+			}
+		});
+      b[2].addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			public void mousePressed(MouseEvent e) {
+				//new BoxOffice();
+				new Login();
+				dispose();
+			}
+		});
+      b[3].addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			public void mousePressed(MouseEvent e) {
+				new boxofficeselect(1);
+				dispose();
+			}
+		});
+      b[4].addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+			public void mouseExited(MouseEvent e) {
+				
+			}
+			public void mousePressed(MouseEvent e) {
+				//new BoxOffice();
+				new Login();
+				dispose();
+			}
+		}); 
+      b[5].addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				

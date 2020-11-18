@@ -88,10 +88,10 @@ public class BoxOffice extends JFrame {
 		btn.addActionListener(e -> {
 			dispose();
 		});
-		//this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 		setSize(450,225);
-		setLocationRelativeTo(null);//창가운데 띄우기
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 }

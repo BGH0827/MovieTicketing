@@ -23,37 +23,38 @@ public class Menu1 extends JFrame {
 		setTitle("영화관 예매 프로그램");
 		setSize(1000, 1000);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		setLocationRelativeTo(null);
+		
 		b1.setFont(new Font("맑은고딕", Font.CENTER_BASELINE, 50));
 		b2.setFont(new Font("맑은고딕", Font.CENTER_BASELINE, 50));
-
+		
 		p.setLayout(null);
 		p.setBackground(Color.black);
 		l.setHorizontalAlignment(JLabel.CENTER);
-
+		
 		l.setBounds(0, 150, 1000, 100);
 		b1.setBounds(350, 450, 300, 100);
 		b2.setBounds(350, 650, 300, 100);
-
+		
 		b1.setBackground(new Color(000, 000, 000));
 		b2.setBackground(new Color(000, 000, 000));
-
+		
 		b1.setBorder(new LineBorder(Color.white, 3));
 		b2.setBorder(new LineBorder(Color.white, 3));
-
+		
 		b1.setForeground(new Color(0xFFFFFF));
 		b2.setForeground(new Color(0xFFFFFF));
 		
 		b1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				
+			
 			}
 			public void mouseExited(MouseEvent e) {
-				
+			
 			}
 			public void mousePressed(MouseEvent e) {
-				new Menu2();
+				new Login();
 				dispose();
 			}
 		});
@@ -66,7 +67,6 @@ public class Menu1 extends JFrame {
 				
 			}
 			public void mousePressed(MouseEvent e) {
-				//new BoxOffice();
 				new SignUp();
 				dispose();
 			}

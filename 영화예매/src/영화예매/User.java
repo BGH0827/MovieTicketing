@@ -2,7 +2,7 @@ package 영화예매;
 
 public class User {
 	String id, password, name, gender;
-	int phone, point;
+	int age;
 	
 	public String getid() {
 		return id;
@@ -16,11 +16,8 @@ public class User {
 	public String getgender() {
 		return gender;
 	}
-	public int getphone() {
-		return phone;
-	}
-	public int getpoint() {
-		return point;
+	public int getage() {
+		return age;
 	}
 	
 	public void setid(String id) {
@@ -35,10 +32,7 @@ public class User {
 	public void setgender(String gender) {
 		this.gender = gender;
 	}
-	public void setphone(int phone) {
-		this.phone = phone;
-	}
-	public void setpoint(int point) {
-		this.point = point;
+	public void setage(int age) {
+		this.age = age;
 	}
 }
