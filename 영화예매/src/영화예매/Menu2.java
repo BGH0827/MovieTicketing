@@ -13,8 +13,8 @@ import javax.swing.border.LineBorder;
 public class Menu2 extends JFrame{
    JPanel p = new JPanel();
    JButton[] b = new JButton[6];
-   
-   public Menu2() {
+  
+   public Menu2(User user) {
 	  setTitle("영화관 선택");
       setSize(1000, 1000);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,89 +27,30 @@ public class Menu2 extends JFrame{
       b[4] = new JButton("예약 확인");
       b[5] = new JButton("예약 취소");
       
-      b[0].addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-			public void mouseExited(MouseEvent e) {
-				
-			}
-			public void mousePressed(MouseEvent e) {
-				//new BoxOffice();
-				new Login();
+      b[0].addActionListener(e -> {
 				dispose();
-			}
-		});
-      b[1].addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-			public void mouseExited(MouseEvent e) {
-				
-			}
-			public void mousePressed(MouseEvent e) {
-				//new BoxOffice();
-				new Login();
-				dispose();
-			}
-		});
-      b[2].addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-			public void mouseExited(MouseEvent e) {
-				
-			}
-			public void mousePressed(MouseEvent e) {
-				//new BoxOffice();
-				new Login();
-				dispose();
-			}
-		});
-      b[3].addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-			public void mouseExited(MouseEvent e) {
-				
-			}
-			public void mousePressed(MouseEvent e) {
-				new boxofficeselect(1);
-				dispose();
-			}
-		});
-      b[4].addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-			public void mouseExited(MouseEvent e) {
-				
-			}
-			public void mousePressed(MouseEvent e) {
-				//new BoxOffice();
-				new Login();
-				dispose();
-			}
-		}); 
-      b[5].addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-			public void mouseExited(MouseEvent e) {
-				
-			}
-			public void mousePressed(MouseEvent e) {
-				//new BoxOffice();
-				new Login();
-				dispose();
-			}
-		});
+				new CGV(user);
+      });
+      b[1].addActionListener(e -> {
+			
+			dispose();
+      });
+      b[2].addActionListener(e -> {
+			
+			dispose();
+      });
+      b[3].addActionListener(e -> {
+			
+			dispose();
+      });
+      b[4].addActionListener(e -> {
+			
+			dispose();
+      });
+      b[5].addActionListener(e -> {
+			
+			dispose();
+      });
       for(int i = 0; i < b.length; i++){
             b[i].setFont(new Font("맑은고딕", Font.CENTER_BASELINE, 50));
       }

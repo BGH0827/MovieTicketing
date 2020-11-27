@@ -1,67 +1,120 @@
 package 영화예매;
 
-import java.awt.BorderLayout;
-import java.awt.Choice;
-import java.awt.GridLayout;
-import java.sql.SQLException;
+import java.awt.Color;
+import java.awt.Font;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 
-import java.awt.BorderLayout;
-import java.awt.Choice;
-import java.awt.GridLayout;
-import java.sql.SQLException;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-public class SignUp extends JFrame{
+public class SignUp extends JFrame {
+	private JPanel contentPane;
 	User user = new User();
-	String idstring = "";
-	JTextField name, id, password, password1, age;
-	Choice gender;
-	JButton input;
-	JPanel panel = new JPanel();
-	JPanel panel1 = new JPanel();
+	String gender = new String();
 	
 	public SignUp() {
-		User user = new User();
-		setTitle("회원가입");
-		panel.setLayout(new GridLayout(0, 2));
-		panel.add(new JLabel("이름", JLabel.CENTER));
-		panel.add(name = new JTextField());
-		panel.add(new JLabel("아이디", JLabel.CENTER));
-		panel.add(id = new JTextField());
-		panel.add(new JLabel("비밀번호", JLabel.CENTER));
-		panel.add(password = new JTextField());
-		//panel.add(new JLabel("비밀번호 확인", JLabel.CENTER));
-		//panel.add(password1 = new JTextField());
-		panel.add(new JLabel("나이", JLabel.CENTER));
-		panel.add(age = new JTextField());
-		panel.add(new JLabel("성별", JLabel.CENTER));
-		gender = new Choice();
-		gender.addItem("남");
-		gender.addItem("여");
-		panel.add(gender);
+		setBounds(100, 100, 1000, 700);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
-		add(panel);
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 984, 500);
+		contentPane.add(panel);
+		panel.setLayout(null);
 		
-		input = new JButton("입력");
-		input.addActionListener(e -> {
+		JTextArea name = new JTextArea();
+		name.setFont(new Font("굴림", Font.PLAIN, 40));
+		name.setBounds(400, 100, 400, 50);
+		panel.add(name);
+		
+		JTextArea id = new JTextArea();
+		id.setFont(new Font("굴림", Font.PLAIN, 40));
+		id.setBounds(400, 180, 400, 50);
+		panel.add(id);
+		
+		JTextArea password = new JTextArea();
+		password.setFont(new Font("굴림", Font.PLAIN, 40));
+		password.setBounds(400, 260, 400, 50);
+		panel.add(password);
+		
+		JTextArea age = new JTextArea();
+		age.setFont(new Font("굴림", Font.PLAIN, 40));
+		age.setBounds(400, 340, 400, 50);
+		panel.add(age);
+		
+		JLabel label0 = new JLabel("회원가입");
+		label0.setFont(new Font("굴림", Font.PLAIN, 40));
+		label0.setBounds(20, 0, 250, 60);
+		panel.add(label0);
+		
+		JLabel label1 = new JLabel("이름 :");
+		label1.setFont(new Font("굴림", Font.PLAIN, 20));
+		label1.setBounds(200, 100, 200, 50);
+		panel.add(label1);
+		
+		JLabel label2 = new JLabel("아이디 :");
+		label2.setFont(new Font("굴림", Font.PLAIN, 20));
+		label2.setBounds(200, 180, 200, 50);
+		panel.add(label2);
+		
+		JLabel label3 = new JLabel("비밀번호 :");
+		label3.setFont(new Font("굴림", Font.PLAIN, 20));
+		label3.setBounds(200, 260, 200, 50);
+		panel.add(label3);
+		
+		JLabel label4 = new JLabel("나이 :");
+		label4.setFont(new Font("굴림", Font.PLAIN, 20));
+		label4.setBounds(200, 340, 200, 50);
+		panel.add(label4);
+		
+		JLabel label5 = new JLabel("성별 :");
+		label5.setFont(new Font("굴림", Font.PLAIN, 20));
+		label5.setBounds(200, 420, 200, 50);
+		panel.add(label5);
+		
+		JRadioButton radio1 = new JRadioButton("남");
+		radio1.setFont(new Font("굴림", Font.PLAIN, 20));
+		radio1.setBounds(400, 435, 58, 23);
+		
+		JRadioButton radio2 = new JRadioButton("여");
+		radio2.setFont(new Font("굴림", Font.PLAIN, 20));
+		radio2.setBounds(500, 436, 58, 23);
+		
+		ButtonGroup groupRd = new ButtonGroup();
+		groupRd.add(radio1);
+		groupRd.add(radio2);
+		panel.add(radio1);
+		panel.add(radio2);
+		
+		JPanel panel1 = new JPanel();
+		panel1.setBounds(0, 500, 984, 161);
+		contentPane.add(panel1);
+		panel1.setLayout(null);
+		
+		JButton button1 = new JButton("완료");
+		button1.setBounds(350, 50, 100, 50);
+		panel1.add(button1);
+		
+		button1.addActionListener(e -> {
+			user.setname(name.getText());
 			user.setid(id.getText());
 			user.setpassword(password.getText());
-			user.setname(name.getText());
 			user.setage(Integer.parseInt(age.getText()));
-			user.setgender(gender.getSelectedItem());
+			
+			if(radio1.isSelected()) {
+				gender = "남";
+			}
+			else {
+				gender = "여";
+			}
+			user.setgender(gender);
 			
 			UserDAO userdao = new UserDAO();
 			userdao.join(user);
@@ -69,12 +122,20 @@ public class SignUp extends JFrame{
 			new Menu1();
 		});
 		
-		panel1.add(input);
-		panel1.setLayout(new GridLayout(0,1));
-		add(panel1,BorderLayout.SOUTH);
+		JButton button2 = new JButton("취소");
+		button2.setBounds(550, 50, 100, 50);
+		panel1.add(button2);
 		
-		setSize(350, 200);
-		setLocationRelativeTo(null);
+		button2.addActionListener(e -> {
+			dispose();
+			new Menu1();
+		});
+		
+		panel.setBackground(new Color(0xffffcc));
+		panel1.setBackground(new Color(0Xffffcc));
+		setTitle("영화관 예매 프로그램");
 		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 	}
 }
