@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -68,13 +69,13 @@ public class Login extends JFrame {
 			new Menu2(user);
 		}
 		else if(result == 0){
-			//알림창 띄우기(비밀번호 불일치)
+			JOptionPane.showMessageDialog(null, "비밀번호가 틀립니다.");
 		}
 		else if(result == -1){
-			//알림창 띄우기(아이디 없음)
+			JOptionPane.showMessageDialog(null, "아이디가 없습니다.");
 		}
 		else {
-			//디비오류
+			JOptionPane.showMessageDialog(null, "데이터베이스 오류입니다.");
 		}
 	});
 		

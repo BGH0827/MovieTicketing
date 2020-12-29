@@ -13,7 +13,8 @@ import javax.swing.border.LineBorder;
 public class Menu2 extends JFrame{
    JPanel p = new JPanel();
    JButton[] b = new JButton[6];
-  
+   Ticket ticket = new Ticket();
+   
    public Menu2(User user) {
 	  setTitle("영화관 선택");
       setSize(1000, 1000);
@@ -25,7 +26,7 @@ public class Menu2 extends JFrame{
       b[2] = new JButton("롯데시네마");
       b[3] = new JButton("박스오피스 순위");
       b[4] = new JButton("예약 확인");
-      b[5] = new JButton("예약 취소");
+      b[5] = new JButton("닫기");
       
       b[0].addActionListener(e -> {
 				dispose();
@@ -40,15 +41,12 @@ public class Menu2 extends JFrame{
 			dispose();
       });
       b[3].addActionListener(e -> {
-			
-			dispose();
+			new BoxOfficeChoice();
       });
       b[4].addActionListener(e -> {
-			
-			dispose();
+			new ReservationConfirm(ticket);
       });
       b[5].addActionListener(e -> {
-			
 			dispose();
       });
       for(int i = 0; i < b.length; i++){

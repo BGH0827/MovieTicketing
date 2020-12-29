@@ -1,5 +1,7 @@
 package 영화예매;
 
+import javax.swing.JOptionPane;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -25,12 +27,10 @@ public class CGVParsing {
 			
 			Elements checkage = doc.select("div").select(".info-movie").select(".ico-grade");
 			int number = checkage.size();
-			//System.out.println(number);
 			String[][] movieinfo = new String[number][3];
 			
 			for(Element element : checkage) {
 				movieinfo[idx][0] = element.text().toString();
-				//System.out.println(agecheck[idx]);
 				idx++;
 			}//이용가 제한
 			
@@ -38,7 +38,6 @@ public class CGVParsing {
 			idx = 0;
 			for(Element element : moviename) {
 				movieinfo[idx][1] = element.text().toString();
-				//System.out.println(movieinfo[idx][1]);
 				idx++;
 			}//영화제목
 			
@@ -47,7 +46,6 @@ public class CGVParsing {
 			for(Element element : show) {
 				if(!element.text().toString().substring(0,1).equals("D")) {
 					movieinfo[idx][2] = element.text().toString();
-					//System.out.println(movieinfo[idx][2]);
 					idx++;
 				}
 			}//상영중인지 아닌지
@@ -55,10 +53,8 @@ public class CGVParsing {
 			Elements movieinfomationsite = doc.select("li").select("div").select(".info-movie").select("a");
 			idx = 0;
 			String[] movieinfomationstring = new String[number];
-			//System.out.println("hi");
 			for(Element element : movieinfomationsite) {
 				movieinfomationstring[idx] = element.getElementsByAttribute("href").attr("href");
-				//System.out.println(movieinfomationstring[idx]);
 				idx++;
 			}//영화에 대한 정보가 있는 사이트
 			
@@ -70,21 +66,12 @@ public class CGVParsing {
 			int count1 = 0;
 			for(Element element : movieinfomation) {
 				moviekind[idx][count1] = element.text().toString();
-				//System.out.println(moviekind[idx][count1]);
 				count1++;
 				if(count1 == 3) {
 					count1 = 0;
 					idx++;
 				}
 			}//상영관 좌석
-			
-			/*Elements moviename = doc.select("li").select("div").select(".info-movie").select("a");
-			idx = 0;
-			for(Element element : moviename) {
-				movieinfo[idx][1] = element.text().toString();
-				System.out.println(movieinfo[idx][1]);
-				idx++;
-			}//영화제목*/
 			
 			Elements counttime = doc.select("div").select(".info-timetable").select("li");
 			int number2 = counttime.size();
@@ -93,7 +80,6 @@ public class CGVParsing {
 			idx = 0;
 			for(Element element : counttime) {
 				counttimeseat[idx+1] = element.text().toString();
-				//System.out.println(counttimeseat[idx+1]);
 				idx++;
 			}//영화 시간,남은 좌석
 			
@@ -105,7 +91,6 @@ public class CGVParsing {
 			count1 = 0;
 			for(Element element : moviewhere) {
 				wherehow[idx][count1] = element.text().toString();
-				//System.out.println(wherehow[idx][count1]);
 				count1++;
 				if(count1 == 3) {
 					count1 = 0;
@@ -114,6 +99,8 @@ public class CGVParsing {
 			}//2d,3관,총 몇석
 			
 			new MovieTime(str, movieinfo, movieinfomationstring, wherehow, address, user);
+			JOptionPane.showMessageDialog(null, "영화 제목을 클릭하시면 자세한 영화 정보가 출력됩니다.");
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

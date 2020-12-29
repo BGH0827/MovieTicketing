@@ -16,8 +16,7 @@ public class CGVSelectTime extends JFrame{
 	JPanel panel = new JPanel();
 	
 	public CGVSelectTime(String theater, String age, String name, String show, String address, User user) {
-		System.out.println(address);
-		
+		setTitle("영화 예매 프로그램");
 		try {
 			Document doc = Jsoup.connect(address).get();
 			int idx = 0;
@@ -47,7 +46,6 @@ public class CGVSelectTime extends JFrame{
 			testsplit = tests[num].split(" ");
 			for(int i = 0; i < testsplit.length; i++) {
 				if(testsplit[i].contains("잔여좌석") && !testsplit[i].contains("마감")) {
-					//System.out.println(testsplit[i]);
 					size++;
 				}
 			}
@@ -55,7 +53,6 @@ public class CGVSelectTime extends JFrame{
 			
 			for(int i = 0; i < testsplit.length; i++) {
 				if(testsplit[i].contains("잔여좌석") && !testsplit[i].contains("마감")) {
-					System.out.println(testsplit[i]);
 					btn[bt] = new JButton(testsplit[i]);
 					bt++;
 				}
@@ -65,13 +62,14 @@ public class CGVSelectTime extends JFrame{
 				panel.add(btn[i]);
 				btn[i].addActionListener(e -> {
 					JButton text = (JButton)e.getSource();
+					dispose();
 					new CGVTicketing(user.getid(), theater, name, text.getText(), user);
 				});
 			}
 			add(panel);
 			
 			panel.setLayout(new GridLayout(size,1));//한줄로 하기
-			setSize(400, 300);
+			setSize(500, 800);
 			setLocationRelativeTo(null);//창가운데 띄우기
 			setVisible(true);
 		}catch (Exception e) {

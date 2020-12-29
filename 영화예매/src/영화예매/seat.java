@@ -3,7 +3,6 @@ package 영화예매;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,9 +24,10 @@ public class seat extends JFrame{
 	int count = 0;
 	String strr = "";
 	String[] str;
-	public seat(Movie movie, User user) {
-		super("좌석예매");
-		str = new String[movie.getmovieperson()];
+	
+	public seat(Ticket ticket, User user) {
+		super("영화 예매 프로그램");
+		str = new String[ticket.getPerson()];
 		
 		panel.add(selectseat);
 		selectseat.setForeground(Color.white);
@@ -77,8 +77,7 @@ public class seat extends JFrame{
 		panel2.setBackground(Color.BLACK);
 		add(panel2, BorderLayout.SOUTH);
 		
-		
-		count = movie.getmovieperson();
+		count = ticket.getPerson();
 		System.out.println("count : " + count);
 		for(int i = 0; i < btn.length; i++) {
 			for(int j = 0; j < btn[i].length; j++) {
@@ -95,19 +94,17 @@ public class seat extends JFrame{
 							for(int z = 0; z < str.length; z++) {
 								strr += str[z] + ",";
 							}
-							movie.setmovieseat(strr);
-							/*try {
-								//new DatabaseMovie(movie,0);
-								//new DatabaseMovie(movie,2);
-							} catch (SQLException e1) {
-								e1.printStackTrace();
-							}*/
+							ticket.setSeat(strr);
+							TicketDAO ticketdao = new TicketDAO();
+							ticketdao.Insert(ticket);
 							dispose();
+							JOptionPane.showMessageDialog(null, "영화 예매가 완료되었습니다.");
+							new Menu2(user);
 							System.out.println(strr);
 						}
 						else {
 							dispose();
-							new seat(movie, user);
+							new seat(ticket, user);
 						}
 					}
 				});
@@ -115,6 +112,7 @@ public class seat extends JFrame{
 		}
 		close.addActionListener(e ->{
 			dispose();
+			new Menu2(user);
 		});
 		
 		setSize(1300,900);

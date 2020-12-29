@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class SignUp extends JFrame {
@@ -29,22 +30,22 @@ public class SignUp extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JTextArea name = new JTextArea();
+		JTextField name = new JTextField();
 		name.setFont(new Font("굴림", Font.PLAIN, 40));
 		name.setBounds(400, 100, 400, 50);
 		panel.add(name);
 		
-		JTextArea id = new JTextArea();
+		JTextField id = new JTextField();
 		id.setFont(new Font("굴림", Font.PLAIN, 40));
 		id.setBounds(400, 180, 400, 50);
 		panel.add(id);
 		
-		JTextArea password = new JTextArea();
+		JTextField password = new JTextField();
 		password.setFont(new Font("굴림", Font.PLAIN, 40));
 		password.setBounds(400, 260, 400, 50);
 		panel.add(password);
 		
-		JTextArea age = new JTextArea();
+		JTextField age = new JTextField();
 		age.setFont(new Font("굴림", Font.PLAIN, 40));
 		age.setBounds(400, 340, 400, 50);
 		panel.add(age);

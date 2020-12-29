@@ -38,7 +38,6 @@ public class CGVInformation extends JFrame{
 			Elements percentelment = doc.select("strong").select(".percent");
 			String percent = percentelment.text().toString();
 			lbl = new JLabel(percent);
-			//System.out.println(percent);//예매율
 			
 			Elements specelement = doc.select("div").select(".spec").select("dt");
 			String[] spec = new String[5];
@@ -119,13 +118,11 @@ public class CGVInformation extends JFrame{
 				if(idx > 0) {
 					evaluationnum[idx-1] = element.text().toString();
 					lbls3[idx-1] = new JLabel(evaluationnum[idx-1]);
-					//System.out.println(evaluationnum[idx-1]);
 				}
 				idx++;
 			}//사전기대자수%, 실관람평지수%
 			
 			Element img = doc.select("span").select(".thumb-image").first();
-			//.getElementsByTag("img")
 			String imgs = img.getElementsByAttribute("src").attr("src");
 			System.out.println(imgs);
 			Image image = null;

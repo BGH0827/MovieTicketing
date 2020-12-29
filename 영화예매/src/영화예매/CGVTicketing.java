@@ -2,6 +2,7 @@ package 영화예매;
 
 import java.awt.BorderLayout;
 import java.awt.Choice;
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -9,19 +10,26 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 public class CGVTicketing extends JFrame{
-	Movie movie = new Movie();
-	String time, seat;
+	Ticket ticket = new Ticket();
+	String runningtime, seat;
 	int totalprice, price, price1, totalperson;
 	Choice personnumber, personnumber1;
 	JTextField cardnumber, cardtime;
 	JPanel panel,panel1, paneltop;
 	JButton btn = new JButton("입력");
-	public CGVTicketing(String idstring, String theater, String name, String timeseat, User user) {
-		super("예약");
-		String time = timeseat.substring(0,timeseat.indexOf("잔"));
-		System.out.println(time);
+	JLabel lbl1 = new JLabel("조조");
+	JLabel lbl2 = new JLabel("성인, 청소년 : 6000");
+	JLabel lbl3 = new JLabel("일반");
+	JLabel lbl4 = new JLabel("성인 : 9000원, 청소년 : 7000원");
+	LineBorder lb = new LineBorder(Color.black, 1);
+	
+	public CGVTicketing(String idstring, String cinematype, String moviename, String timeseat, User user) {
+		super("영화 예매 프로그램");
+		String runningtime = timeseat.substring(0,timeseat.indexOf("잔"));
+		System.out.println(runningtime);
 		String seat = timeseat.substring(timeseat.indexOf("잔"));
 		System.out.println(seat);
 		
@@ -30,15 +38,22 @@ public class CGVTicketing extends JFrame{
 		paneltop = new JPanel();
 		
 		paneltop.setLayout(new GridLayout(0,1));
-		if(Integer.parseInt(time.substring(0,2)) <= 10) {
-			paneltop.add(new JLabel("조조", JLabel.CENTER));
-			paneltop.add(new JLabel("성인, 청소년  : 6000원", JLabel.CENTER));
+		if(Integer.parseInt(runningtime.substring(0,2)) <= 10) {
+			lbl1.setBorder(lb);
+			lbl1.setHorizontalAlignment(JLabel.CENTER);
+			paneltop.add(lbl1);
+			lbl2.setBorder(lb);
+			lbl2.setHorizontalAlignment(JLabel.CENTER);
+			paneltop.add(lbl2);
 		}
 		else {
-			paneltop.add(new JLabel("일반", JLabel.CENTER));
-			paneltop.add(new JLabel("성인 : 9000원 , 청소년  : 7000원", JLabel.CENTER));
+			lbl3.setBorder(lb);
+			lbl3.setHorizontalAlignment(JLabel.CENTER);
+			paneltop.add(lbl3);
+			lbl4.setBorder(lb);
+			lbl4.setHorizontalAlignment(JLabel.CENTER);
+			paneltop.add(lbl4);
 		}//조조,일반
-		
 		panel.setLayout(new GridLayout(0, 2));
 		panel.add(new JLabel("성인 인원수", JLabel.CENTER));
 		
@@ -55,7 +70,7 @@ public class CGVTicketing extends JFrame{
 		}
 		panel.add(personnumber1);
 		
-		if(Integer.parseInt(time.substring(0,2)) <= 10) {
+		if(Integer.parseInt(runningtime.substring(0,2)) <= 10) {
 			price  = Integer.parseInt(personnumber.getSelectedItem()) * 6000;
 			price1 = Integer.parseInt(personnumber1.getSelectedItem()) * 6000;
 		}
@@ -63,7 +78,6 @@ public class CGVTicketing extends JFrame{
 			price  = Integer.parseInt(personnumber.getSelectedItem()) * 9000;
 			price1 = Integer.parseInt(personnumber1.getSelectedItem()) * 7000;
 		}//조조,일반
-		totalprice = price+price1;
 		
 		panel.add(new JLabel("카드 번호 : ", JLabel.CENTER));
 		panel.add(cardnumber = new JTextField());
@@ -76,20 +90,24 @@ public class CGVTicketing extends JFrame{
 		
 		btn.addActionListener(e -> {
 			totalperson = Integer.parseInt(personnumber.getSelectedItem()) + Integer.parseInt(personnumber1.getSelectedItem());
-			movie.setid(idstring);
-			movie.settheater(theater);
-			movie.setmoviename(name);
-			movie.setmovietime(time);
-			movie.setmovieperson(totalperson);
-			movie.setmovieprice(totalprice);
-			movie.setcardnumber(Integer.parseInt(cardnumber.getText()));
-			new seat(movie, user);
-			System.out.println("입력완료");
+			totalprice = price+price1;
+			System.out.println(totalprice);
+			
+			ticket.setId(idstring);
+			ticket.setCinemaType(cinematype);
+			ticket.setMovieName(moviename);
+			ticket.setRunningTime(runningtime);
+			ticket.setPerson(totalperson);
+			ticket.setMoviePrice(totalprice);
+			new seat(ticket, user);
+			//System.out.println("입력완료");
 			dispose();
 		});
-		
+		panel.setBackground(new Color(0xffffff));
 		add(panel);
+		panel1.setBackground(new Color(0xffffff));
 		add(panel1, BorderLayout.SOUTH);
+		paneltop.setBackground(new Color(0xffffff));
 		add(paneltop, BorderLayout.NORTH);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(350, 200);

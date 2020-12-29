@@ -1,6 +1,7 @@
 package 영화예매;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
@@ -35,9 +36,9 @@ public class CGV extends JFrame{
 	JPanel panelcurrent = new JPanel();
 	JPanel paneljeju = new JPanel();//지역마다 패널들 지정
 	JTabbedPane tp = new JTabbedPane();//패널전환할 사용
-	
+
 	public CGV(User user)  {
-		setTitle("상영시간표");
+		setTitle("영화 예매 프로그램");
 		try {
 			Document doc = Jsoup.connect(address).get();
 			Elements contents = doc.select("div").select("#contents").select("script");
@@ -104,60 +105,109 @@ public class CGV extends JFrame{
 		
 		for(int i = 0; i < close.length; i++) {
 			close[i] = new JButton("닫기");
+			close[i].setForeground(new Color(0xffffff));
 			close[i].setBorderPainted(false);
 			close[i].setContentAreaFilled(false);
 		}
 		
 		for(int i = 0; i < s2.length; i++) {
 			lbl[i] = new JLabel(s2[i]);// + "(" + s1[i] + ")");
+			lbl[i].setForeground(new Color(0xffffff));
 		}
 		
 		for(int i = 0; i < s2.length; i++) {
+			JLabel lbl2 = new JLabel(" / ");
+			
 			if(s[i].equals("서울")) {
+				lbl[i].setForeground(new Color(0xffffff));
 				panelseoul.add(lbl[i]);
-				panelseoul.add(new JLabel(" / "));
+				lbl2.setForeground(new Color(0xffffff));
+				panelseoul.add(lbl2);
 			}
 			else if(s[i].equals("경기")) {
+				lbl[i].setForeground(new Color(0xffffff));
 				panelgye.add(lbl[i]);
-				panelgye.add(new JLabel(" / "));
+				lbl2.setForeground(new Color(0xffffff));
+				panelgye.add(lbl2);
 			}
 			else if(s[i].equals("인천")) {
+				lbl[i].setForeground(new Color(0xffffff));
 				panelincheon.add(lbl[i]);
-				panelincheon.add(new JLabel(" / "));
+				lbl2.setForeground(new Color(0xffffff));
+				panelincheon.add(lbl2);
 			}
 			else if(s[i].equals("강원")) {
+				lbl[i].setForeground(new Color(0xffffff));
 				panelgangwon.add(lbl[i]);
-				panelgangwon.add(new JLabel(" / "));
+				lbl2.setForeground(new Color(0xffffff));
+				panelgangwon.add(lbl2);
 			}
 			else if(s[i].equals("대전/충청")) {
+				lbl[i].setForeground(new Color(0xffffff));
 				panelchung.add(lbl[i]);
-				panelchung.add(new JLabel(" / "));
+				lbl2.setForeground(new Color(0xffffff));
+				panelchung.add(lbl2);
 			}
 			else if(s[i].equals("대구")) {
+				lbl[i].setForeground(new Color(0xffffff));
 				paneldaegu.add(lbl[i]);
-				paneldaegu.add(new JLabel(" / "));
+				lbl2.setForeground(new Color(0xffffff));
+				paneldaegu.add(lbl2);
 			}
 			else if(s[i].equals("부산/울산")) {
+				lbl[i].setForeground(new Color(0xffffff));
 				panelbusan.add(lbl[i]);
-				panelbusan.add(new JLabel(" / "));
+				lbl2.setForeground(new Color(0xffffff));
+				panelbusan.add(lbl2);
 			}
 			else if(s[i].equals("경상")) {
+				lbl[i].setForeground(new Color(0xffffff));
 				panelcurrent.add(lbl[i]);
-				panelcurrent.add(new JLabel(" / "));
+				lbl2.setForeground(new Color(0xffffff));
+				panelcurrent.add(lbl2);
 			}
 			else if(s[i].equals("광주/전라/제주")) {
+				lbl[i].setForeground(new Color(0xffffff));
 				paneljeju.add(lbl[i]);
-				paneljeju.add(new JLabel(" / "));
+				lbl2.setForeground(new Color(0xffffff));
+				paneljeju.add(lbl2);
 			}
+			
 			panelseoul.add(close[0], BorderLayout.SOUTH);
+			panelseoul.setForeground(new Color(0xffffff));
+			panelseoul.setBackground(new Color(0x000000));
+			
 			panelgye.add(close[1]);
+			panelgye.setForeground(new Color(0xffffff));
+			panelgye.setBackground(new Color(0x000000));
+			
 			panelincheon.add(close[2]);
+			panelincheon.setForeground(new Color(0xffffff));
+			panelincheon.setBackground(new Color(0x000000));
+			
 			panelgangwon.add(close[3]);
+			panelgangwon.setForeground(new Color(0xffffff));
+			panelgangwon.setBackground(new Color(0x000000));
+			
 			panelchung.add(close[4]);
+			panelchung.setForeground(new Color(0xffffff));
+			panelchung.setBackground(new Color(0x000000));
+			
 			paneldaegu.add(close[5]);
+			paneldaegu.setForeground(new Color(0xffffff));
+			paneldaegu.setBackground(new Color(0x000000));
+			
 			panelbusan.add(close[6]);
+			panelbusan.setForeground(new Color(0xffffff));
+			panelbusan.setBackground(new Color(0x000000));
+			
 			panelcurrent.add(close[7]);
+			panelcurrent.setForeground(new Color(0xffffff));
+			panelcurrent.setBackground(new Color(0x000000));
+			
 			paneljeju.add(close[8]);
+			paneljeju.setForeground(new Color(0xffffff));
+			paneljeju.setBackground(new Color(0x000000));
 		}//패널에 버튼추가
 		
 		for(int i = 0; i < lbl.length; i++) {
@@ -184,6 +234,7 @@ public class CGV extends JFrame{
 		tp.add("부산/울산",panelbusan);
 		tp.add("경상",panelcurrent);
 		tp.add("광주/전라/제주",paneljeju);//각 영화관 지역별 패널 추가
+		tp.setBackground(Color.white);
 		add(tp);
 		
 		for(int i = 0; i < lbl.length; i++) {
